@@ -112,7 +112,7 @@ public class CalcParser extends Parser {
 			if ( listener instanceof CalcListener ) ((CalcListener)listener).exitProg(this);
 		}
 		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) { // prog
 			if ( visitor instanceof CalcVisitor ) return ((CalcVisitor<? extends T>)visitor).visitProg(this);
 			else return visitor.visitChildren(this);
 		}
@@ -175,7 +175,7 @@ public class CalcParser extends Parser {
 			if ( listener instanceof CalcListener ) ((CalcListener)listener).exitPrint(this);
 		}
 		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) { // print
 			if ( visitor instanceof CalcVisitor ) return ((CalcVisitor<? extends T>)visitor).visitPrint(this);
 			else return visitor.visitChildren(this);
 		}
@@ -194,7 +194,7 @@ public class CalcParser extends Parser {
 			if ( listener instanceof CalcListener ) ((CalcListener)listener).exitPrintExpr(this);
 		}
 		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) { // printExpr
 			if ( visitor instanceof CalcVisitor ) return ((CalcVisitor<? extends T>)visitor).visitPrintExpr(this);
 			else return visitor.visitChildren(this);
 		}
@@ -214,7 +214,7 @@ public class CalcParser extends Parser {
 			if ( listener instanceof CalcListener ) ((CalcListener)listener).exitAssign(this);
 		}
 		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) { // AssignContext
 			if ( visitor instanceof CalcVisitor ) return ((CalcVisitor<? extends T>)visitor).visitAssign(this);
 			else return visitor.visitChildren(this);
 		}
@@ -227,7 +227,7 @@ public class CalcParser extends Parser {
 			setState(18);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
-			case 1:
+			case 1: // 模式匹配 expr
 				_localctx = new PrintExprContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
@@ -235,28 +235,28 @@ public class CalcParser extends Parser {
 				expr(0);
 				}
 				break;
-			case 2:
+			case 2: // ID '=' expr
 				_localctx = new AssignContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(12);
 				match(ID);
 				setState(13);
-				match(T__0);
+				match(T__0); // =
 				setState(14);
 				expr(0);
 				}
 				break;
-			case 3:
+			case 3: // 'print(' ID ')'
 				_localctx = new PrintContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(15);
-				match(T__1);
+				match(T__1); // print(
 				setState(16);
-				match(ID);
+				match(ID);  // ID
 				setState(17);
-				match(T__2);
+				match(T__2); // )
 				}
 				break;
 			}
@@ -298,7 +298,7 @@ public class CalcParser extends Parser {
 			if ( listener instanceof CalcListener ) ((CalcListener)listener).exitNumber(this);
 		}
 		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) { // number
 			if ( visitor instanceof CalcVisitor ) return ((CalcVisitor<? extends T>)visitor).visitNumber(this);
 			else return visitor.visitChildren(this);
 		}
@@ -317,7 +317,7 @@ public class CalcParser extends Parser {
 			if ( listener instanceof CalcListener ) ((CalcListener)listener).exitParens(this);
 		}
 		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) { // ParensContext
 			if ( visitor instanceof CalcVisitor ) return ((CalcVisitor<? extends T>)visitor).visitParens(this);
 			else return visitor.visitChildren(this);
 		}
@@ -342,7 +342,7 @@ public class CalcParser extends Parser {
 			if ( listener instanceof CalcListener ) ((CalcListener)listener).exitMulDiv(this);
 		}
 		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) { // MulDivContext 乘除
 			if ( visitor instanceof CalcVisitor ) return ((CalcVisitor<? extends T>)visitor).visitMulDiv(this);
 			else return visitor.visitChildren(this);
 		}
@@ -367,7 +367,7 @@ public class CalcParser extends Parser {
 			if ( listener instanceof CalcListener ) ((CalcListener)listener).exitAddSub(this);
 		}
 		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) { // AddSubContext 加减
 			if ( visitor instanceof CalcVisitor ) return ((CalcVisitor<? extends T>)visitor).visitAddSub(this);
 			else return visitor.visitChildren(this);
 		}
@@ -471,17 +471,17 @@ public class CalcParser extends Parser {
 				match(ID);
 				}
 				break;
-			case T__4:
+			case T__4: // (
 				{
 				_localctx = new ParensContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(26);
-				match(T__4);
+				match(T__4); // (
 				setState(27);
 				expr(0);
 				setState(28);
-				match(T__2);
+				match(T__2); // )
 				}
 				break;
 			default:
